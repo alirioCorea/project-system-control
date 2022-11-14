@@ -5,7 +5,8 @@
             "@styles/*": ["styles/*"],
             "@common/*": ["common/*"],
             "@components/*": ["components/*"],
-            "@assets/*": ["assets/*"]
+            "@assets/*": ["assets/*"],
+            "@layouts/*": ["layouts/*"]
         }
     }
 }
