@@ -3,8 +3,22 @@ import Link from "next/link";
 import ImageBackground from "@assets/img/login-imagen.jpg";
 import Image from "next/image";
 import LogoVertical from "@assets/img/logo-vertical-azul.png";
+import { useAuth } from "@hooks/useAuth";
+import { useRef } from "react";
 
-export default function login() {
+export default function Login() {
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const auth = useAuth();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const enteredEmail = emailRef.current.value;
+    const enteredPassword = passwordRef.current.value;
+    console.log(enteredEmail, enteredPassword);
+    auth.signIn(enteredEmail, enteredPassword).then(() => {});
+  };
+
   return (
     <AuthLayout
       title={"Ingresar a la web"}
@@ -19,22 +33,23 @@ export default function login() {
             title="Kutty Home Page"
             className="flex items-center justify-start"
           >
-            <Image src={LogoVertical} alt="LogoAuth" width={200} height={200} />
+            <Image src={LogoVertical} alt="LogoAuth" width={200} />
           </Link>
           <h1 className="mt-6 mb-4 text-xl font-light text-left text-gray-800">
             Log in to your account
           </h1>
-          <form className="pb-1 space-y-4">
+          <form className="pb-1 space-y-4" onSubmit={submitHandler}>
             <label className="block">
               <span className="block mb-1 text-xs font-medium text-blue-1000">
                 Your Email
               </span>
               <input
-                className="form-input w-full rounded border-2 h-10 hover:border-blue-1000 pl-4"
+                className="form-input w-full rounded border-2 h-10 hover:border-blue-1000 pl-4 focus:outline-none"
                 type="email"
                 placeholder="Ex. james@bond.com"
-                inputmode="email"
+                inputMode="email"
                 required
+                ref={emailRef}
               />
             </label>
             <label className="block">
@@ -42,10 +57,11 @@ export default function login() {
                 Your Password
               </span>
               <input
-                className="form-input w-full rounded border-2 h-10 hover:border-blue-1000 pl-4"
+                className="form-input w-full rounded border-2 h-10 hover:border-blue-1000 pl-4 focus:outline-none"
                 type="password"
                 placeholder="••••••••"
                 required
+                ref={passwordRef}
               />
             </label>
             <div className="flex items-center justify-between">
@@ -60,7 +76,7 @@ export default function login() {
           </form>
           <div className="my-6 space-y-2">
             <p className="text-xs text-gray-600">
-              Don't have an account?
+              Don&apos;t have an account?
               <Link
                 href="/auth/register"
                 className="text-blue-1000 hover:text-black"
@@ -87,6 +103,7 @@ export default function login() {
             src={ImageBackground}
             alt="2 people working on a project"
             className="object-cover w-full h-64 min-h-full bg-gray-100"
+            priority
           />
         </div>
       </section>
