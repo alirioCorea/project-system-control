@@ -4,11 +4,13 @@ import ImageBackground from "@assets/img/login-imagen.jpg";
 import Image from "next/image";
 import LogoVertical from "@assets/img/logo-vertical-azul.png";
 import { useAuth } from "@hooks/useAuth";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Login() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const [showPassword, setShowPassword] = useState(true);
   const auth = useAuth();
 
   const submitHandler = (e) => {
@@ -56,13 +58,22 @@ export default function Login() {
               <span className="block mb-1 text-xs font-medium text-blue-1000">
                 Your Password
               </span>
-              <input
-                className="form-input w-full rounded border-2 h-10 hover:border-blue-1000 pl-4 focus:outline-none"
-                type="password"
-                placeholder="••••••••"
-                required
-                ref={passwordRef}
-              />
+              <div className="relative">
+                <input
+                  className="form-input w-full rounded border-2 h-10 hover:border-blue-1000 pl-4 focus:outline-none"
+                  type={showPassword ? "password" : "text"}
+                  placeholder="••••••••"
+                  required
+                  ref={passwordRef}
+                />
+                <button
+                  type="button"
+                  className="absolute top-2/4 -translate-y-2/4 w-5 h-full right-5"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             </label>
             <div className="flex items-center justify-between">
               <label className="flex items-center">
@@ -71,7 +82,11 @@ export default function Login() {
                   Remember me
                 </span>
               </label>
-              <input type="submit" className="btn btn-primary" value="Login" />
+              <input
+                type="submit"
+                value="Login"
+                className="inline-flex items-center rounded-md border border-transparent bg-blue-1000 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-750 focus:outline-none focus:ring-2 focus:ring-orange-1000 focus:ring-offset-2"
+              />
             </div>
           </form>
           <div className="my-6 space-y-2">

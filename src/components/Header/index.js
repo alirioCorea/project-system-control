@@ -13,6 +13,7 @@ const navigation = [
   { name: "Sitios", href: "prueba", current: false },
   { name: "Usuario", href: "#", current: false },
 ];
+
 const userNavigation = [
   { name: "Ver perfil", href: "perfil" },
   { name: "Ajustes", href: "perfilAjustes" },
