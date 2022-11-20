@@ -7,8 +7,8 @@ import Link from "next/link";
 import { ImMenu } from "react-icons/im";
 import { ImCross } from "react-icons/im";
 import Image from "next/image";
-import Logo from "@assets/img/original.png";
-import LogoNegativo from "@assets/img/original-dark.png";
+import Logo1 from "@assets/img/Logo-vertical-azul-blanco.svg";
+import Logo2 from "@assets/img/Logo-vertical.svg";
 
 const navigation = [
   { name: "Proyectos", href: "#" },
@@ -58,7 +58,7 @@ export default function Home() {
             <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
               <Link href={"/"} className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
-                <Image src={Logo} alt="Company Logo" className="w-20" />
+                <Image src={Logo1} alt="Company Logo" className="w-40" />
               </Link>
             </div>
             <div className="flex lg:hidden">
@@ -100,11 +100,7 @@ export default function Home() {
                 <div className="flex">
                   <Link href="/" className="-m-1.5 p-1.5">
                     <span className="sr-only">Your Company</span>
-                    <Image
-                      src={LogoNegativo}
-                      alt="Company Logo"
-                      className="w-20"
-                    />
+                    <Image src={Logo2} alt="Company Logo" className="w-40" />
                   </Link>
                 </div>
                 <div className="flex">

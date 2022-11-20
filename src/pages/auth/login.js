@@ -6,6 +6,8 @@ import LogoVertical from "@assets/img/logo-vertical-azul.png";
 import { useAuth } from "@hooks/useAuth";
 import { useRef, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import CircularIndeterminate from "@components/CircularIndeterminate";
+import BasicAlerts from "@components/Alert";
 
 export default function Login() {
   const emailRef = useRef(null);
@@ -17,7 +19,6 @@ export default function Login() {
     e.preventDefault();
     const enteredEmail = emailRef.current.value;
     const enteredPassword = passwordRef.current.value;
-    console.log(enteredEmail, enteredPassword);
     auth.signIn(enteredEmail, enteredPassword).then(() => {});
   };
 
@@ -111,6 +112,15 @@ export default function Login() {
             >
               Privacy & Terms
             </Link>
+          </div>
+          <div className="flex justify-center">
+            {auth.loading && <CircularIndeterminate />}
+            {auth.errorMessage && (
+              <BasicAlerts
+                message={auth.errorMessage}
+                setError={auth.setErrorMessage}
+              />
+            )}
           </div>
         </div>
         <div className="col-span-1 lg:col-span-8">

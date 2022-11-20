@@ -31,6 +31,7 @@ function useProvideAuth() {
 
     try {
       setLoading(true);
+      setErrorMessage(null);
       const { data: access_token } = await axios.post(
         endPoints.auth.login,
         { email, password },
@@ -47,6 +48,7 @@ function useProvideAuth() {
         router.push("/admin/proyectos");
       }
     } catch (error) {
+      setLoading(false);
       setErrorMessage(error.response.data.error);
     }
   };
@@ -60,6 +62,7 @@ function useProvideAuth() {
     user,
     signIn,
     errorMessage,
+    setErrorMessage,
     logout,
     loading,
   };

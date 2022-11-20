@@ -4,7 +4,7 @@ export default function index() {
   return (
     <>
       <MainLayout
-        title={"Josue | Corea"}
+        title={"Administra"}
         description={"Sitio web para gestion de proyectos gratuitos"}
       >
         <Home />
